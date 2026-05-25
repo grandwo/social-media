@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}朋友圈{% endblock %}
+{% block content %}
+<div class="card">
+    {% if not logged_in %}
+    <p>请登录后查看朋友圈。</p>
+    <div class="actions">
+        <a class="button" href="/login">登录</a>
+        <a class="button button-secondary" href="/register">注册</a>
+    </div>
+    {% elif not exist_id %}
+    <h2>用户不存在。</h2>
+    {% else %}
+    {% if target_id == user_id %}
+    <form id="postForm">
+        <textarea id="postContent" name="content" rows="4" cols="10" placeholder="分享新鲜事..."></textarea>
+        <div class="word_limit">
+            0/200
+        </div>
+        <select id="visibilityButton" name="visibility">
+            <option value="public">公开</option>
+            <option value="friends">仅好友可见</option>
+            <option value="private">仅自己可见</option>
+        </select>
+        <div class="actions" style="margin-top: 8px;">
+            <button id="postButton" class="button">发布</button>
+        </div>
+    </form>
+    {% endif %}
+    <div id="postsContainer" data-target-id="{{ target_id }}" style="margin-top: 16px;"></div>
+    {% endif %}
+</div>
+<script src="/static/js/user_posts.js"></script>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}评论{% endblock %}
+{% block content %}
+<div class="card">
+    <h1>评论</h1>
+    {% if not logged_in %}
+    <p>请登录后查看评论。</p>
+    <div class="actions">
+        <a class="button" href="/login">登录</a>
+        <a class="button button-secondary" href="/register">注册</a>
+    </div>
+    {% else %}
+    <div id="commentsContainer" data-comment-id="{{ comment_id }}" data-user-id="{{ user_id }}" data-role="{{ role }}"
+        style="margin-top: 16px;"></div>
+    {% endif %}
+</div>
+<script src="/static/js/comment.js"></script>
+{% endblock %}

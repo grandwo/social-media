@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}社交媒体{% endblock %}
+{% block content %}
+<div class="card">
+    <h1>欢迎来到社交媒体</h1>
+    {% if not logged_in %}
+    <p>请登录或注册后继续使用平台功能。</p>
+    <div class="actions">
+        <a class="button" href="/login">登录</a>
+        <a class="button button-secondary" href="/register">注册</a>
+    </div>
+    {% else %}
+    <div id = "postsContainer" style="margin-top: 16px;"></div>
+    {% endif %}
+</div>
+<script src="/static/js/index.js"></script>
+{% endblock %}

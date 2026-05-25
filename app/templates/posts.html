@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}朋友圈{% endblock %}
+{% block content %}
+<div class="card">
+    <h1>朋友圈</h1>
+    {% if not logged_in %}
+    <p>请登录后查看朋友圈。</p>
+    <div class="actions">
+        <a class="button" href="/login">登录</a>
+        <a class="button button-secondary" href="/register">注册</a>
+    </div>
+    {% elif role == "admin" %}
+    <p>管理员无法查看自己或好友的朋友圈</p>
+    {% else %}
+    <div id = "postsContainer" style="margin-top: 16px;"></div>
+    {% endif %}
+</div>
+<script src="/static/js/posts.js"></script>
+{% endblock %}

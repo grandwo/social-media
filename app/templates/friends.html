@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}好友列表{% endblock %}
+{% block content %}
+<div class="card">
+    <h1>好友列表</h1>
+    {% if not logged_in %}
+    <p>请登录后查看好友列表。</p>
+    <div class="actions">
+        <a class="button" href="/login">登录</a>
+        <a class="button button-secondary" href="/register">注册</a>
+    </div>
+    {% elif role == "admin" %}
+    <p>管理员无法查看好友</p>
+    {% else %}
+    <a href="/friend_groups" target="_blank">
+        <h3>查看好友分组</h3>
+    </a>
+    <div id="friendsContainer" style="margin-top: 16px;"></div>
+    {% endif %}
+</div>
+<script src="/static/js/friends.js"></script>
+{% endblock %}

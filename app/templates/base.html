@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}社交媒体{% endblock %}</title>
+    <style>
+        :root {
+            color-scheme: light;
+            color: #1f2d3d;
+            background: #f5f5f5;
+            font-family: "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: #f5f5f5;
+            color: #1f2d3d;
+        }
+
+        a {
+            color: #1976d2;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #155fa4;
+        }
+
+        header {
+            background: #ffffff;
+            border-bottom: 1px solid #e4e9f0;
+        }
+
+        .navbar {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 68px;
+        }
+
+        .site-brand {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #1976d2;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: #52606d;
+            font-weight: 500;
+        }
+
+        .nav-link:hover {
+            color: #1976d2;
+        }
+
+        .main-container {
+            max-width: 1080px;
+            width: 100%;
+            margin: 24px auto;
+            padding: 0 20px;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 18px;
+            box-shadow: 0 12px 32px rgba(31, 45, 61, 0.08);
+            padding: 32px;
+        }
+
+        .form-card {
+            max-width: 560px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            margin: 0 0 24px;
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #1b2736;
+        }
+
+        .text-muted {
+            color: #6b778c;
+        }
+
+        label {
+            display: block;
+            margin: 18px 0 8px;
+            font-weight: 600;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid #d8dde6;
+            border-radius: 12px;
+            background: #fcfdff;
+            color: #1f2d3d;
+            outline: none;
+            transition: border-color .2s ease, box-shadow .2s ease;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: #1976d2;
+            box-shadow: 0 0 0 4px rgba(25, 118, 210, 0.12);
+        }
+
+        .button,
+        button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 12px;
+            background: #1976d2;
+            color: #ffffff;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background .2s ease, transform .2s ease;
+            margin-bottom: 5px;
+        }
+
+        .button:hover,
+        button:hover {
+            background: #155fa4;
+            transform: translateY(-1px);
+        }
+
+        .button-secondary {
+            background: #f5f6fb;
+            color: #1f2d3d;
+            border: 1px solid #d8dde6;
+        }
+
+        .button-secondary:hover {
+            background: #e9eef6;
+        }
+
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .actions .option {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .info-card {
+            padding: 24px;
+            border-radius: 16px;
+            background: #f8fbff;
+            border: 1px solid #dce8fa;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+        }
+
+        .word_limit {
+            text-align: right;
+            margin-top: 4px;
+            color: #6b778c;
+            font-size: 13px;
+        }
+
+        .post {
+            padding: 16px;
+            border-bottom: 1px solid #ebeff3;
+        }
+
+        .post h4 {
+            margin: 0 0 8px;
+            font-size: 1.1rem;
+            color: #1976d2;
+        }
+
+        .post p {
+            margin: 0 0 8px;
+        }
+
+        .post a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .comment h4 {
+            margin: 0 0 8px;
+            font-size: 1.1rem;
+            color: #1976d2;
+        }
+
+        .comment a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .timestamp {
+            font-size: 12px;
+            color: #6b778c;
+        }
+
+        .visibility-stamp {
+            font-size: 12px;
+            color: #6b778c;
+        }
+
+        .friend {
+            padding: 16px;
+            border-bottom: 1px solid #ebeff3;
+        }
+
+        .friend h3 {
+            margin: 0 0 8px;
+            font-size: 1.1rem;
+            color: #1976d2;
+        }
+
+        .group h3{
+            margin-bottom: 4px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 16px;
+        }
+
+        th,
+        td {
+            padding: 14px 16px;
+            border-bottom: 1px solid #ebeff3;
+            text-align: left;
+        }
+
+        th {
+            background: #f8f9fb;
+            font-weight: 700;
+        }
+
+        pre {
+            background: #0f1720;
+            color: #f7fafc;
+            padding: 18px;
+            border-radius: 14px;
+            overflow-x: auto;
+        }
+
+        footer {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 24px 20px 32px;
+            color: #6b778c;
+            font-size: .95rem;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 0 16px;
+            }
+
+            .main-container {
+                padding: 0 16px;
+            }
+
+            .card {
+                padding: 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="navbar">
+            <a class="site-brand" href="/">社交媒体</a>
+            <nav class="nav-links">
+                {% if not session.get('logged_in') %}
+                <a class="nav-link" href="/login">登录</a>
+                <a class="nav-link" href="/register">注册</a>
+                {% elif session.get('role') == 'admin' %}
+                <span class="nav-link">欢迎 <strong>管理员 {{ session.get('id') }}</strong></span>
+                <a class="nav-link" href="/users" target="_blank">用户列表</a>
+                <a class="nav-link" href="/logout">退出</a>
+                {% else %}
+                <span class="nav-link">欢迎 <strong>{{ session.get('username') }}</strong></span>
+                <a class="nav-link" href="/users" target="_blank">用户列表</a>
+                <a class="nav-link" href="/user/{{ session.get('id') }}" target="_blank">个人空间</a>
+                <a class="nav-link" href="/friends" target="_blank">好友列表</a>
+                <a class="nav-link" href="/posts" target="_blank">朋友圈</a>
+                <a class="nav-link" href="/posts/{{ session.get('id') }}" target="_blank">我发布的</a>
+                <a class="nav-link" href="/logout">退出</a>
+                {% endif %}
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-container">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        社交媒体演示平台
+    </footer>
+</body>
+
+</html>

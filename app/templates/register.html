@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}注册{% endblock %}
+{% block content %}
+<div class="card form-card">
+    <h1 class="section-header">创建新账号</h1>
+    <form id="registerForm">
+        <label for="username">用户名</label>
+        <input id="username" name="username" required />
+        <label for="password">密码</label>
+        <input id="password" name="password" type="password" required />
+        <label>性别</label>
+        <div class="actions" type="radio" style="margin-top: 8px;">
+            <label class="option"><input type="radio" name="gender" value="male" checked /> 男</label>
+            <label class="option"><input type="radio" name="gender" value="female" /> 女</label>
+            <label class="option"><input type="radio" name="gender" value="other" /> 其他</label>
+        </div>
+        <div class="actions" style="margin-top: 24px;">
+            <button type="submit">注册</button>
+        </div>
+    </form>
+
+    <div class="info-card" style="margin-top:24px;">
+        <p class="text-muted">如果已经有账号，请前往 <a href="/login">登录</a>。</p>
+        <p class="text-muted">如果是管理员，请前往 <a href="/login/admin">管理员登录</a>。</p>
+    </div>
+</div>
+
+<script src="/static/js/register.js"></script>
+{% endblock %}

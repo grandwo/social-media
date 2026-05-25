@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}好友分组{% endblock %}
+{% block content %}
+<div class="card">
+    <h1>好友分组</h1>
+    {% if not logged_in %}
+    <p>请登录后查看好友分组。</p>
+    <div class="actions">
+        <a class="button" href="/login">登录</a>
+        <a class="button button-secondary" href="/register">注册</a>
+    </div>
+    {% else %}
+    <div id="groupsContainer" data-group-id="{{ group_id }}" style="margin-top: 16px;"></div>
+    {% endif %}
+</div>
+<script src="/static/js/friend_group.js"></script>
+{% endblock %}

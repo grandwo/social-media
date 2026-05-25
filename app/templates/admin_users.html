@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}管理员：查看所有用户{% endblock %}
+{% block content %}
+  <div class="card">
+    <h1 class="section-header">管理员：查看所有用户</h1>
+    <div class="actions" style="margin-bottom: 16px;">
+      <a class="button button-secondary" href="/">返回首页</a>
+      <button id="loadButton" class="button">获取所有用户</button>
+    </div>
+    <div id="summary" class="text-muted"></div>
+    <div id="tableContainer" class="table-responsive"></div>
+    <section style="margin-top: 24px;">
+      <h2 class="section-header">原始响应</h2>
+      <pre id="output">点击“获取所有用户”查看结果。</pre>
+    </section>
+  </div>
+
+  <script src="/static/js/admin_users.js"></script>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}用户列表{% endblock %}
+{% block content %}
+<div class="card">
+    <h1>用户列表</h1>
+    {% if not logged_in %}
+    <p>请登录后查看好友列表。</p>
+    <div class="actions">
+        <a class="button" href="/login">登录</a>
+        <a class="button button-secondary" href="/register">注册</a>
+    </div>
+    {% else %}
+    <div id="usersContainer" style="margin-top: 16px;"></div>
+    {% endif %}
+</div>
+<script src="/static/js/users.js"></script>
+{% endblock %}
