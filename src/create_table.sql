@@ -69,6 +69,8 @@ CREATE TABLE IF NOT EXISTS `comments` (
     CHECK (CHAR_LENGTH(`content`) <= 200)
 );
 
+DROP TRIGGER IF EXISTS after_friend_delete;
+
 DROP USER IF EXISTS 'app_user' @'localhost';
 
 DROP USER IF EXISTS 'app_admin' @'localhost';

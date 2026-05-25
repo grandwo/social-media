@@ -10,13 +10,17 @@ def init_database():
     # 获取当前文件所在目录，并构建SQL文件路径
     current_dir = os.path.dirname(__file__)
     sql_path = os.path.join(current_dir, "create_table.sql")
+    trigger_path = os.path.join(current_dir, "create_trigger.sql")
 
-    # 使用 ROOT_DB_CONFIG（超级用户）来创建数据库和表
+    # 使用 ROOT_DB_CONFIG 来创建数据库和表
     db_config = ROOT_DB_CONFIG.copy()
     db_config.pop("database", None)
 
     with open(sql_path, "r", encoding="utf-8") as f:
         sql_content = f.read()
+    
+    with open(trigger_path, "r", encoding="utf-8") as f:
+        trigger_content = f.read()
 
     # 尝试连接数据库并执行SQL文件中的语句，如果连接或执行失败会抛出异常
     try:
@@ -30,6 +34,7 @@ def init_database():
                 print(f"Executing: {statement[:50]}...")
                 cursor.execute(statement)
 
+        cursor.execute(trigger_content)
         cursor.connection.commit()
         print("Database and tables initialized successfully!")
     except pymysql.Error as e:

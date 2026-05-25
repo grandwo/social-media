@@ -22,17 +22,9 @@ def remove_friend(user_id: int, friend_id: int):
         cursor = get_connection("user").cursor()
         cursor.execute(
             """
-            DELETE FROM friends WHERE (user_id = %s AND friend_id = %s) OR (user_id = %s AND friend_id = %s)
+            DELETE FROM friends WHERE user_id = %s AND friend_id = %s
             """,
-            (user_id, friend_id, friend_id, user_id))
-        cursor.execute(
-            """
-            DELETE FROM friend_group_members WHERE (friend_id = %s AND group_id IN (
-                SELECT group_id FROM friend_groups WHERE user_id = %s
-            )) OR (friend_id = %s AND group_id IN (
-                SELECT group_id FROM friend_groups WHERE user_id = %s
-            ))
-            """, (friend_id, user_id, user_id, friend_id))
+            (user_id, friend_id))
         cursor.connection.commit()
     except Exception as e:
         raise e
